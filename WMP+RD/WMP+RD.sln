@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMP+RD", "WMP+RD\WMP+RD.csproj", "{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
