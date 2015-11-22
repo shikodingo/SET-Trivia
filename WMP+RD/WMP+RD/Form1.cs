@@ -14,6 +14,7 @@ namespace WMP_RD
     {
         frmMainUserQ user = new frmMainUserQ();
         frmAdmin admin = new frmAdmin();
+        string uName;
         public frmMainUser()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace WMP_RD
             }
             else
             {
+                uName = txtName.Text;
                 user.Show();
             }
         }

@@ -31,6 +31,7 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
+            this.lblInfo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtName
@@ -59,11 +60,21 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.Location = new System.Drawing.Point(-4, 9);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(252, 13);
+            this.lblInfo.TabIndex = 3;
+            this.lblInfo.Text = "HINT: Want admin mode? Type admin in name box.";
+            // 
             // frmMainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(247, 164);
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.txtName);
@@ -79,6 +90,7 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Label lblInfo;
     }
 }
 

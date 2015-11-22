@@ -31,19 +31,20 @@
             this.components = new System.ComponentModel.Container();
             this.lblQuestion1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.settriviaDataSet = new WMP_RD.settriviaDataSet();
-            this.questionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.questionsTableAdapter = new WMP_RD.settriviaDataSetTableAdapters.questionsTableAdapter();
             this.qIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.questionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.settriviaDataSet = new WMP_RD.settriviaDataSet();
+            this.questionsTableAdapter = new WMP_RD.settriviaDataSetTableAdapters.questionsTableAdapter();
             this.tmr20 = new System.Windows.Forms.Timer(this.components);
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.lblTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.settriviaDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settriviaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // lblQuestion1
@@ -68,20 +69,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(240, 64);
             this.dataGridView1.TabIndex = 1;
             // 
-            // settriviaDataSet
-            // 
-            this.settriviaDataSet.DataSetName = "settriviaDataSet";
-            this.settriviaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // questionsBindingSource
-            // 
-            this.questionsBindingSource.DataMember = "questions";
-            this.questionsBindingSource.DataSource = this.settriviaDataSet;
-            // 
-            // questionsTableAdapter
-            // 
-            this.questionsTableAdapter.ClearBeforeFill = true;
-            // 
             // qIDDataGridViewTextBoxColumn
             // 
             this.qIDDataGridViewTextBoxColumn.DataPropertyName = "Q_ID";
@@ -94,9 +81,24 @@
             this.qDescriptionDataGridViewTextBoxColumn.HeaderText = "QDescription";
             this.qDescriptionDataGridViewTextBoxColumn.Name = "qDescriptionDataGridViewTextBoxColumn";
             // 
+            // questionsBindingSource
+            // 
+            this.questionsBindingSource.DataMember = "questions";
+            this.questionsBindingSource.DataSource = this.settriviaDataSet;
+            // 
+            // settriviaDataSet
+            // 
+            this.settriviaDataSet.DataSetName = "settriviaDataSet";
+            this.settriviaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // questionsTableAdapter
+            // 
+            this.questionsTableAdapter.ClearBeforeFill = true;
+            // 
             // tmr20
             // 
             this.tmr20.Enabled = true;
+            this.tmr20.Tick += new System.EventHandler(this.tmr20_Tick);
             // 
             // radioButton1
             // 
@@ -142,11 +144,20 @@
             this.radioButton4.Text = "radioButton4";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Location = new System.Drawing.Point(29, 222);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(0, 13);
+            this.lblTime.TabIndex = 6;
+            // 
             // frmMainUserQ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.lblTime);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
@@ -157,8 +168,8 @@
             this.Text = "Question ";
             this.Load += new System.EventHandler(this.frmMainUserQ1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.settriviaDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settriviaDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +189,6 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.Label lblTime;
     }
 }
