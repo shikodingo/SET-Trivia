@@ -25,7 +25,7 @@ CREATE TABLE Leaderboard (
 uNID INTEGER,
 uACW INTEGER,
 FOREIGN KEY (uNID) REFERENCES Users (U_ID),
-FOREIGN KEY (uACW) REFERENCES Users (A_ID)
+FOREIGN KEY (uACW) REFERENCES ANSWERS (A_ID)
 );
 
 
@@ -80,4 +80,3 @@ INSERT INTO ANSWERS (A_Letter, ADescription, A_ID, ACorrect) VALUES ('a', 'Nikla
 INSERT INTO ANSWERS (A_Letter, ADescription, A_ID, ACorrect) VALUES ('b', 'Bill Gates', 38, false);
 INSERT INTO ANSWERS (A_Letter, ADescription, A_ID, ACorrect) VALUES ('c', 'Bjarne Stroustrup', 39, true);
 INSERT INTO ANSWERS (A_Letter, ADescription, A_ID, ACorrect) VALUES ('d', 'Paul Allen', 40, false);
-
