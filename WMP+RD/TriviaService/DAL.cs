@@ -193,7 +193,7 @@ namespace TriviaService
             {
                 if (connection.State == ConnectionState.Open)
                 {
-                    string usersAQuery = "INSERT INTO UserAnswer (Name, Q_ID, A_ID, ACorrect)" + "VALUES (" + userName + ", " + qNum + ", " + usersAnswer + ", " + aScore + ");";
+                    string usersAQuery = "INSERT INTO UsersAnswers (Name, Q_ID, A_ID, ACorrect)" + "VALUES (" + userName + ", " + qNum + ", " + usersAnswer + ", " + aScore + ");";
                     //create command and assign the query and connection from the constructor
                     MySqlCommand cmd = new MySqlCommand(usersAQuery, connection);
 
@@ -208,13 +208,18 @@ namespace TriviaService
         }
 
         //update leaderboard
-        public void updateLeaderboard(string userName, int score)
+        public void updateLeaderboard(int userID, int score)
         {
             try
             {
                 if (connection.State == ConnectionState.Open)
                 {
-                    string leaderboardUpdateQuery = "";
+                    string leaderboardUpdateQuery = "UPDATE Leaderboard SET UScore=" + score + "WHERE uNID=" + userID + ";";
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(leaderboardUpdateQuery, connection);
+
+                    //Execute command
+                    cmd.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)
@@ -224,85 +229,133 @@ namespace TriviaService
         }
 
         //show leaderboard
+        public List<string> showLeaderboard()
+        {
+            //Create a list to store the result
+            List<string> rankInfo = new List<string>();
+
+            try
+            {
+                this.OpenConnection();//Open connection
+                if (connection.State == ConnectionState.Open)
+                {
+                    string leaderboardQuery = "SELECT uNID, UScore FROM Leaderboard ORDER BY UScore DESC;";
+                    MySqlCommand cmd = new MySqlCommand(leaderboardQuery, connection);//Create Command
+                    
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        rankInfo.Add(dataReader.GetString(0) + " " + dataReader.GetString(1));// name score
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                //log: ex.Message
+            }
+            return rankInfo;
+        }
+            
         //deactivate user
+        public void deactivateUser(int U_ID)
+        {
+            try
+            {
+                this.OpenConnection();//Open connection
+                if (connection.State == ConnectionState.Open)
+                {
+                    string userStatusQuery = "UPDATE User SET UStatus=FLASE WHERE U_ID=" + U_ID + ";";
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(userStatusQuery, connection);
+
+                    //Execute command
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                //log ex.Message
+            }
+            this.CloseConnection();//close Connection
+        }
+
+        //reactivate user
+        public void reactivateUser(int U_ID)//might not need
+        {
+            try
+            {
+                this.OpenConnection();//Open connection
+                if (connection.State == ConnectionState.Open)
+                {
+                    string userStatusQuery = "UPDATE User SET UStatus=TRUE WHERE U_ID=" + U_ID + ";";
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(userStatusQuery, connection);
+
+                    //Execute command
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch
+            {
+                //log ex.Message
+            }
+            this.CloseConnection();//close Connection
+        }
+
         //see current status of live users
-
-        //excel stuff think Jen did already????????
-
-
-
-        //Insert statement
-        public void Insert(string query)
+        public List<string> showCurrentStatus()//unfinsihed*******************
         {
-            //open connection
-            if (this.OpenConnection() == true)
+            /*output Needs:
+             * users name
+             * score
+             * current question
+             * questions answered and score got on the questions
+             */
+
+            //Create a list to store the result
+            List<string> userInfo = new List<string>();
+
+            try
             {
-                //create command and assign the query and connection from the constructor
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                this.OpenConnection();//Open connection
+                if (connection.State == ConnectionState.Open)
+                {
+                    string leaderboardQuery = "SELECT uNID, UScore FROM Leaderboard ORDER BY UScore DESC;";
+                    MySqlCommand cmd = new MySqlCommand(leaderboardQuery, connection);//Create Command
 
-                //Execute command
-                cmd.ExecuteNonQuery();
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
 
-                //close connection
-                this.CloseConnection();
+                    //Read the data and store them in the list
+                    while (dataReader.Read())
+                    {
+                        userInfo.Add(dataReader.GetString(0) + " " + dataReader.GetString(1));// name score
+                    }
+
+                    //close Data Reader
+                    dataReader.Close();
+                }
             }
+            catch (Exception ex)
+            {
+                //log: ex.Message
+            }
+            return userInfo;
         }
 
-        //Update statement
-        public void Update(string query)
-        {
-            //Open connection
-            if (this.OpenConnection() == true)
-            {
-                //create mysql command
-                MySqlCommand cmd = new MySqlCommand();
-                //Assign the query using CommandText
-                cmd.CommandText = query;
-                //Assign the connection using Connection
-                cmd.Connection = connection;
-
-                //Execute query
-                cmd.ExecuteNonQuery();
-
-                //close connection
-                this.CloseConnection();
-            }
-        }
-
-        //Delete statement
-        public void Delete(string query)
-        {
-            if (this.OpenConnection() == true)
-            {
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.ExecuteNonQuery();
-                this.CloseConnection();
-            }
-        }
-
-        //Count statement
-        public int Count(string query)//"SELECT Count(*) FROM tableinfo"
-        {
-            int Count = -1;
-
-            //Open Connection
-            if (this.OpenConnection() == true)
-            {
-                //Create Mysql Command
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-
-                //ExecuteScalar will return one value
-                Count = int.Parse(cmd.ExecuteScalar() + "");
-
-                //close Connection
-                this.CloseConnection();
-
-                return Count;
-            }
-            else
-            {
-                return Count;
-            }
-        }
+        /*
+         * find correct answer for question
+         * edit questions answers
+         * avergae time to answer correctly
+         * num of incorrect answers for question
+         * num of correct answers for question
+         * percentage of correct answers
+         */
     }
 }
