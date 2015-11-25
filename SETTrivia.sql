@@ -10,8 +10,24 @@ PRIMARY KEY (Q_ID)
 CREATE TABLE ANSWERS (
 A_ID INTEGER,
 ADescription VARCHAR(45),
-ACorrect bool
+ACorrect bool,
+AWrong bool,
+PRIMARY KEY (A_ID)
 );
+
+CREATE TABLE Users (
+U_ID INTEGER,
+U_Name VARCHAR (50), 
+PRIMARY KEY (U_ID)
+);
+
+CREATE TABLE Leaderboard (
+uNID INTEGER,
+uACW INTEGER,
+FOREIGN KEY (uNID) REFERENCES Users (U_ID),
+FOREIGN KEY (uACW) REFERENCES Users (A_ID)
+);
+
 
 INSERT INTO Questions (Q_ID, QDescription) VALUES (1, 'What Continent has the fewest watering plants?');
 INSERT INTO Questions (Q_ID, QDescription) VALUES (2, 'What was the first planet to be discovered using the telescope, in 1781?');
@@ -64,3 +80,4 @@ INSERT INTO ANSWERS (A_Letter, ADescription, A_ID, ACorrect) VALUES ('a', 'Nikla
 INSERT INTO ANSWERS (A_Letter, ADescription, A_ID, ACorrect) VALUES ('b', 'Bill Gates', 38, false);
 INSERT INTO ANSWERS (A_Letter, ADescription, A_ID, ACorrect) VALUES ('c', 'Bjarne Stroustrup', 39, true);
 INSERT INTO ANSWERS (A_Letter, ADescription, A_ID, ACorrect) VALUES ('d', 'Paul Allen', 40, false);
+
