@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMP+RD", "WMP+RD\WMP+RD.csproj", "{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriviaService", "TriviaService\TriviaService.csproj", "{71ED2254-865E-42AA-A8E9-67809184D365}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFB9166B-B6EB-4BEB-94EB-5CB4F2F7A28D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71ED2254-865E-42AA-A8E9-67809184D365}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71ED2254-865E-42AA-A8E9-67809184D365}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71ED2254-865E-42AA-A8E9-67809184D365}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71ED2254-865E-42AA-A8E9-67809184D365}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
