@@ -18,6 +18,7 @@ PRIMARY KEY (A_ID)
 CREATE TABLE Users (
 U_ID INTEGER,
 U_Name VARCHAR (50), 
+UStatus bool,
 PRIMARY KEY (U_ID)
 );
 
@@ -27,6 +28,7 @@ uACW INTEGER,
 FOREIGN KEY (uNID) REFERENCES Users (U_ID),
 FOREIGN KEY (uACW) REFERENCES ANSWERS (A_ID)
 );
+
 
 
 INSERT INTO Questions (Q_ID, QDescription) VALUES (1, 'What Continent has the fewest watering plants?');
