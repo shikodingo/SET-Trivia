@@ -11,7 +11,6 @@ CREATE TABLE ANSWERS (
 A_ID INTEGER,
 ADescription VARCHAR(45),
 ACorrect bool,
-AWrong bool,
 PRIMARY KEY (A_ID)
 );
 
@@ -22,13 +21,19 @@ UStatus bool,
 PRIMARY KEY (U_ID)
 );
 
+CREATE TABLE UsersAnswers (
+UA_ID INTEGER,
+UA_Answer INTEGER,
+PRIMARY KEY (UA_ID),
+FOREIGN KEY (UA_Answer) REFERENCES ANSWERS (A_ID)
+);
+
 CREATE TABLE Leaderboard (
 uNID INTEGER,
 uACW INTEGER,
 FOREIGN KEY (uNID) REFERENCES Users (U_ID),
 FOREIGN KEY (uACW) REFERENCES ANSWERS (A_ID)
 );
-
 
 
 INSERT INTO Questions (Q_ID, QDescription) VALUES (1, 'What Continent has the fewest watering plants?');
