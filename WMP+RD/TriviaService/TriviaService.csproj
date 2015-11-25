@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL.cs" />
+    <Compile Include="IPCFileProducer.cs" />
     <Compile Include="TriviaService.cs">
       <SubType>Component</SubType>
     </Compile>
