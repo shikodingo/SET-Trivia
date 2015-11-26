@@ -24,7 +24,7 @@ namespace TriviaService
         StreamReader file = null;
         static Mutex mut;
 
-        public TriviaService()
+        public TriviaService()//test
         {
             InitializeComponent();
 
