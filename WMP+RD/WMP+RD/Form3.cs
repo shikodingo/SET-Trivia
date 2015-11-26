@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel; //have to re-compile in order to get interop to work again
+using Excel = Microsoft.Office.Interop.Excel; 
 using System.Reflection; 
 
 namespace WMP_RD
