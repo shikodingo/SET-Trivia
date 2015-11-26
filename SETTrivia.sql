@@ -11,7 +11,7 @@ CREATE TABLE ANSWERS (
 A_ID INTEGER,
 ADescription VARCHAR(45),
 ACorrect bool,
-PRIMARY KEY (A_ID)
+PRIMARY KEY (A_ID),
 FOREIGN KEY (QuestionID) REFERENCES Questions (Q_ID)
 );
 
