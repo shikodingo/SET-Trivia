@@ -24,7 +24,7 @@ namespace TriviaService
         //Initialize values
         private void Initialize()//remember to allow this to be changed*************************************
         {
-            host = "localhost";	// ip address of host
+            host = "localhost";	// ip address of host //need to change this to the variable got from the first form
             user = "root";		// user name
             password = "root";	// password
             db = "settriviaDataSet";		// database name
@@ -39,7 +39,7 @@ namespace TriviaService
             try
             {
                 connection.Open();
-                //log that connection was sucessful
+                Logging.Log("Connection was successful!");
             }
             catch (MySqlException ex)
             {
@@ -51,13 +51,13 @@ namespace TriviaService
                 switch (ex.Number)
                 {
                     case 0:
-                        //log: "Cannot connect to server."
+                        Logging.Log("Cannot connect to the server!");
                         break;
                     case 1045:
-                        //log: "Invalid username/password, please try again"
+                        Logging.Log("Invalid username/password, please try again");
                         break;
                     default:
-                        //log: ex.Message
+                        Logging.Log("Exception caught");
                         break;
                 }
             }
@@ -71,11 +71,11 @@ namespace TriviaService
             try
             {
                 connection.Close();
-                //log connection was closed sucessfully
+                Logging.Log("Connection was closed successfully!");
             }
             catch (MySqlException ex)
             {
-                //log ex.Message
+                Logging.Log("Exception caught");
 
             }
         }
@@ -97,7 +97,7 @@ namespace TriviaService
             }
             catch
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
             this.CloseConnection();//close Connection
             return outputQ;
@@ -146,7 +146,7 @@ namespace TriviaService
             }
             catch
             {
-                //log ex.Message
+                Logging.Log("Exception caught");
             }
             this.CloseConnection();//close Connection
             return answers;//return list to be displayed
@@ -166,7 +166,7 @@ namespace TriviaService
             }
             catch (Exception ex)
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
         }
 
@@ -183,7 +183,7 @@ namespace TriviaService
             }
             catch (Exception ex)
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
         }
 
@@ -203,7 +203,7 @@ namespace TriviaService
             }
             catch (Exception ex)
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
         }
 
@@ -224,7 +224,7 @@ namespace TriviaService
             }
             catch (Exception ex)
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
         }
 
@@ -257,7 +257,7 @@ namespace TriviaService
             }
             catch (Exception ex)
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
             return rankInfo;
         }
@@ -280,7 +280,7 @@ namespace TriviaService
             }
             catch
             {
-                //log ex.Message
+                Logging.Log("Exception caught");
             }
             this.CloseConnection();//close Connection
         }
@@ -303,7 +303,7 @@ namespace TriviaService
             }
             catch
             {
-                //log ex.Message
+                Logging.Log("Exception caught");
             }
             this.CloseConnection();//close Connection
         }
@@ -344,7 +344,7 @@ namespace TriviaService
             }
             catch (Exception ex)
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
             this.CloseConnection();//close Connection
             return userInfo;
@@ -368,7 +368,7 @@ namespace TriviaService
             }
             catch (Exception ex)
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
             this.CloseConnection();//close Connection
             return correctAnswer;
@@ -391,7 +391,7 @@ namespace TriviaService
             }
             catch (Exception ex)
             {
-                //log: ex.Message
+                Logging.Log("Exception caught");
             }
             this.CloseConnection();//close Connection
         }

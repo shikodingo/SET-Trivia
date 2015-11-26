@@ -15,6 +15,7 @@ namespace WMP_RD
         frmMainUserQ user = new frmMainUserQ();
         frmAdmin admin = new frmAdmin();
         string uName;
+        int uServer; //temp int (probably should be a float
         public frmMainUser()
         {
             InitializeComponent();
@@ -24,11 +25,13 @@ namespace WMP_RD
         {
             if (txtName.Text == "admin")
             {
+                uServer = int.Parse(txtServer.Text);
                 admin.Show();
             }
             else
             {
                 uName = txtName.Text;
+                uServer = int.Parse(txtServer.Text);
                 user.Show();
             }
         }

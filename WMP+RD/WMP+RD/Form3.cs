@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel; //have to re-compile in order to get interop to work again
 using System.Reflection; 
 
 namespace WMP_RD
@@ -101,6 +101,11 @@ namespace WMP_RD
 
                 MessageBox.Show(errorMessage, "Error");
             }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

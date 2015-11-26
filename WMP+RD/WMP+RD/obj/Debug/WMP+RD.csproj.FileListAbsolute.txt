@@ -1,2 +1,3 @@
 C:\Users\Drumstick\Desktop\WMP+RD\WMP+RD\bin\Debug\WMP+RD.exe.config
 C:\GITRepo\SETTriviawc\trunk\WMP+RD\WMP+RD\bin\Debug\WMP+RD.exe.config
+C:\GITRepo\SETTrivia\trunk\WMP+RD\WMP+RD\bin\Debug\WMP+RD.exe.config

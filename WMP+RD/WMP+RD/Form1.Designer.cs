@@ -32,11 +32,13 @@
             this.lblName = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.lblServerName = new System.Windows.Forms.Label();
+            this.txtServer = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(69, 82);
+            this.txtName.Location = new System.Drawing.Point(69, 65);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(100, 20);
             this.txtName.TabIndex = 0;
@@ -52,7 +54,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(94, 108);
+            this.btnOk.Location = new System.Drawing.Point(160, 129);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 2;
@@ -69,11 +71,29 @@
             this.lblInfo.TabIndex = 3;
             this.lblInfo.Text = "HINT: Want admin mode? Type admin in name box.";
             // 
+            // lblServerName
+            // 
+            this.lblServerName.AutoSize = true;
+            this.lblServerName.Location = new System.Drawing.Point(54, 91);
+            this.lblServerName.Name = "lblServerName";
+            this.lblServerName.Size = new System.Drawing.Size(90, 13);
+            this.lblServerName.TabIndex = 4;
+            this.lblServerName.Text = "Enter your server:";
+            // 
+            // txtServer
+            // 
+            this.txtServer.Location = new System.Drawing.Point(69, 108);
+            this.txtServer.Name = "txtServer";
+            this.txtServer.Size = new System.Drawing.Size(100, 20);
+            this.txtServer.TabIndex = 5;
+            // 
             // frmMainUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(247, 164);
+            this.Controls.Add(this.txtServer);
+            this.Controls.Add(this.lblServerName);
             this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.lblName);
@@ -91,6 +111,8 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.Label lblServerName;
+        private System.Windows.Forms.TextBox txtServer;
     }
 }
 

@@ -23,7 +23,7 @@ namespace TriviaService
         StreamWriter output; // The stream writer
         Thread tInput; // A thread used for the callback
         bool done = false; // A bool for running whiles
-        static string machineName = "WIN10-b08"; // Please change this variable to match the computer name before running
+        static string machineName = "WIN10-b08"; // Please change this so that it isn't hard coded
 
         public TriviaService()
         {
