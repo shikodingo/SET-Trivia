@@ -346,16 +346,62 @@ namespace TriviaService
             {
                 //log: ex.Message
             }
+            this.CloseConnection();//close Connection
             return userInfo;
         }
 
+        //find correct answer for question
+        public string showCorrectAnswer(int Q_ID)
+        {
+            string correctAnswer = "";
+            try
+            {
+                this.OpenConnection();//Open connection
+                if (connection.State == ConnectionState.Open)
+                {
+                    string answerTestQuery = "SELECT A_ID FROM ANSWERS WHERE ACorrect=TRUE AND QuestionID=" + Q_ID + ";";
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(answerTestQuery, connection);
+
+                    correctAnswer = Convert.ToString(cmd.ExecuteScalar());
+                }
+            }
+            catch (Exception ex)
+            {
+                //log: ex.Message
+            }
+            this.CloseConnection();//close Connection
+            return correctAnswer;
+        }
+
+        //edit questions answers
+        public void adminEdit(string adminsQuery)
+        {
+            try
+            {
+                this.OpenConnection();//Open connection
+                if (connection.State == ConnectionState.Open)
+                {
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(adminsQuery, connection);
+
+                    //Execute command
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                //log: ex.Message
+            }
+            this.CloseConnection();//close Connection
+        }
+        
+        
         /*
-         * find correct answer for question
-         * edit questions answers
-         * avergae time to answer correctly
+         * average time to answer correctly-excel?
          * num of incorrect answers for question
          * num of correct answers for question
-         * percentage of correct answers
+         * percentage of correct answers-excel?
          */
     }
 }
