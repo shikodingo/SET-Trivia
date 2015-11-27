@@ -14,6 +14,9 @@ namespace WMP_RD
 {
     public partial class frmAdmin : Form
     {
+        frmEdit edit = new frmEdit();
+        frmLive live = new frmLive();
+        frmLeader leader = new frmLeader();
         public frmAdmin()
         {
             InitializeComponent();
@@ -105,12 +108,17 @@ namespace WMP_RD
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
+            edit.Show();
         }
 
         private void btnLive_Click(object sender, EventArgs e)
         {
+            live.Show();
+        }
 
+        private void btnLeader_Click(object sender, EventArgs e)
+        {
+            leader.Show();
         }
     }
 }

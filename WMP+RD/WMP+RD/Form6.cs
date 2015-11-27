@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace WMP_RD
 {
-    public partial class frmEdit : Form
+    public partial class frmLeader : Form
     {
-        public frmEdit()
+        public frmLeader()
         {
             InitializeComponent();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

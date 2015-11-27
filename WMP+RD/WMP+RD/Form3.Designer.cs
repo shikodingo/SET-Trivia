@@ -62,6 +62,7 @@
             this.btnLeader.TabIndex = 2;
             this.btnLeader.Text = "View leaderboard!";
             this.btnLeader.UseVisualStyleBackColor = true;
+            this.btnLeader.Click += new System.EventHandler(this.btnLeader_Click);
             // 
             // btnExHis
             // 
