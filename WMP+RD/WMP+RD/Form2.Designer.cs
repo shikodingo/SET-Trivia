@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblQuestion1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.qIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.questionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.settriviaDataSet = new WMP_RD.settriviaDataSet();
             this.questionsTableAdapter = new WMP_RD.settriviaDataSetTableAdapters.questionsTableAdapter();
@@ -42,7 +39,7 @@
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.lblTime = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtQuestion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.questionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settriviaDataSet)).BeginInit();
             this.SuspendLayout();
@@ -55,31 +52,6 @@
             this.lblQuestion1.Size = new System.Drawing.Size(52, 13);
             this.lblQuestion1.TabIndex = 0;
             this.lblQuestion1.Text = "Question ";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.qIDDataGridViewTextBoxColumn,
-            this.qDescriptionDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.questionsBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 43);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 64);
-            this.dataGridView1.TabIndex = 1;
-            // 
-            // qIDDataGridViewTextBoxColumn
-            // 
-            this.qIDDataGridViewTextBoxColumn.DataPropertyName = "Q_ID";
-            this.qIDDataGridViewTextBoxColumn.HeaderText = "Q_ID";
-            this.qIDDataGridViewTextBoxColumn.Name = "qIDDataGridViewTextBoxColumn";
-            // 
-            // qDescriptionDataGridViewTextBoxColumn
-            // 
-            this.qDescriptionDataGridViewTextBoxColumn.DataPropertyName = "QDescription";
-            this.qDescriptionDataGridViewTextBoxColumn.HeaderText = "QDescription";
-            this.qDescriptionDataGridViewTextBoxColumn.Name = "qDescriptionDataGridViewTextBoxColumn";
             // 
             // questionsBindingSource
             // 
@@ -152,22 +124,31 @@
             this.lblTime.Size = new System.Drawing.Size(0, 13);
             this.lblTime.TabIndex = 6;
             // 
+            // txtQuestion
+            // 
+            this.txtQuestion.Location = new System.Drawing.Point(29, 43);
+            this.txtQuestion.Multiline = true;
+            this.txtQuestion.Name = "txtQuestion";
+            this.txtQuestion.ReadOnly = true;
+            this.txtQuestion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtQuestion.Size = new System.Drawing.Size(220, 78);
+            this.txtQuestion.TabIndex = 7;
+            // 
             // frmMainUserQ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.txtQuestion);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.lblQuestion1);
             this.Name = "frmMainUserQ";
             this.Text = "Question ";
             this.Load += new System.EventHandler(this.frmMainUserQ1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.settriviaDataSet)).EndInit();
             this.ResumeLayout(false);
@@ -178,17 +159,15 @@
         #endregion
 
         private System.Windows.Forms.Label lblQuestion1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private settriviaDataSet settriviaDataSet;
         private System.Windows.Forms.BindingSource questionsBindingSource;
         private settriviaDataSetTableAdapters.questionsTableAdapter questionsTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qDescriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.Timer tmr20;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.TextBox txtQuestion;
     }
 }
