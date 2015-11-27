@@ -52,6 +52,7 @@
             this.btnLive.TabIndex = 1;
             this.btnLive.Text = "See live status!";
             this.btnLive.UseVisualStyleBackColor = true;
+            this.btnLive.Click += new System.EventHandler(this.btnLive_Click);
             // 
             // btnLeader
             // 

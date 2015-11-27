@@ -105,6 +105,11 @@ namespace WMP_RD
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void btnLive_Click(object sender, EventArgs e)
+        {
 
         }
     }
