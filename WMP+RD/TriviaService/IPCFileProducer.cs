@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading;
 
-namespace Chat_program
+namespace TriviaService
 {
     class IPCFileProducer
     {
