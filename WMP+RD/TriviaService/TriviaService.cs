@@ -17,7 +17,6 @@ namespace TriviaService
 {
     public partial class TriviaService : ServiceBase
     {
-        //just changing something
         /*
          * create a default main folder in the C:\
          * create service, user, admin files within the main file
@@ -31,6 +30,9 @@ namespace TriviaService
          * the service will keep track of user scores by reading in the answers put into the serivce folder and storeing them in the UsersAnswers table
          * when a user is created they will amek a new file in service folder called "newUser" with their user name in the file. the service will store these users in the Users MySQL table
          * once question 10 is sent to the service folder by a user their total score will be calculated and they will be added to the leaderboard
+         * if the admin wishes to change a question or answer the admin form will create a file in the service folder called either changeQuestion or changeAnswer with the questions number on the end for the file name. if the admin changes a question then the letter for that question will also be in the file
+         * if the admin wants to see current status of users the admin will create a file in the Service folder named viewUserStatus which the server will then respond by creating a file called usersStatus in the admin folder
+         * 
          */
 
         delegate void MyCallback(Object obj);       // Delegate declaration for use in Invoke
