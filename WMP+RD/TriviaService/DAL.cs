@@ -104,7 +104,7 @@ namespace TriviaService
         }
 
         //Select statement for answers
-        public string SelectQAnswers(int Qnum)//double check this******************************
+        public string SelectQAnswers(int Qnum)
         {
             //Create a list to store the result
             string answers = "";
