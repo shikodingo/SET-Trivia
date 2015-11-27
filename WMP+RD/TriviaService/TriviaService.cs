@@ -17,7 +17,7 @@ namespace TriviaService
 {
     public partial class TriviaService : ServiceBase
     {
-
+        //just changing something
         /*
          * create a default main folder in the C:\
          * create service, user, admin files within the main file
@@ -116,17 +116,17 @@ namespace TriviaService
             mut.ReleaseMutex();
             return data;
         }
-        
+
         private void SendMessageToFile(object sender, EventArgs e)//send message
         {
             IPCFileProducer createNewMessage = new IPCFileProducer();
             DAL accessData = new DAL();
-            for (int i=1; i<=10; i++)//currently this creates a file for each question with the file having a randomly generated title and the question as text in the file
+            for (int i = 1; i <= 10; i++)//currently this creates a file for each question with the file having a randomly generated title and the question as text in the file
             {
                 string question = accessData.SelectAQuestion(i);
                 createNewMessage.WriteData(question, "temp");//write question into file
             }
-            
+
         }
 
         protected override void OnStart(string[] args)
@@ -135,9 +135,9 @@ namespace TriviaService
             string question = "";
             IPCFileProducer createNewMessage = new IPCFileProducer();
             DAL accessData = new DAL();
-            for (int i=1; i<=10; i++)
+            for (int i = 1; i <= 10; i++)
             {
-                question += accessData.SelectAQuestion(i) + System.Environment.NewLine;               
+                question += accessData.SelectAQuestion(i) + System.Environment.NewLine;
             }
             createNewMessage.WriteData(question, "Questions");//write question into file
 
