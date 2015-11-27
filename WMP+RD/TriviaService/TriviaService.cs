@@ -24,7 +24,7 @@ namespace TriviaService
         StreamReader file = null;
         static Mutex mut;
 
-        public TriviaService()//test
+        public TriviaService()
         {
             InitializeComponent();
 
@@ -41,23 +41,6 @@ namespace TriviaService
             fsw.EnableRaisingEvents = true;
 
             fsw.Created += new FileSystemEventHandler(fsw_Created);
-        }
-
-        // FUNCTION     : SetLblInvoke(Object str)
-        // DESCRIPTION  : allows the text box to be altered from places other than where it was created
-        // PARAMETERS   : <Object><str><the data you want to put into the textbox>
-        // RETURNS      : void
-        private void SetLblInvoke(Object str)
-        {
-            if (messageOutputBox.InvokeRequired)                                  // InvokeRequired property is true if child thread
-            {
-                MyCallback callback = new MyCallback(SetLblInvoke);        // Callback is instance of delegate
-                Invoke(callback, new object[] { str });
-            }
-            else                                                        // Direct access to Control if parent thread
-            {
-                messageOutputBox.Text += (String)str + "\r\n";
-            }
         }
 
         // FUNCTION     : fsw_Created(object sender, FileSystemEventArgs e)
@@ -79,7 +62,7 @@ namespace TriviaService
             }
             else
             {
-                this.messageOutputBox.Text += status + "\r\n";
+                Logging.Log("connection lost");
             }
         }
 
@@ -126,14 +109,30 @@ namespace TriviaService
             for (int i=1; i<=10; i++)//currently this creates a file for each question with the file having a randomly generated title and the question as text in the file
             {
                 string question = accessData.SelectAQuestion(i);
-                createNewMessage.WriteData(question);//write question into file
+                createNewMessage.WriteData(question, );//write question into file
             }
             
         }
 
         protected override void OnStart(string[] args)
         {
- 
+            //this chunk of code should create one file called questions that will put all the questions from the MySQL database into a txt file to give to the users
+            string question = "";
+            IPCFileProducer createNewMessage = new IPCFileProducer();
+            DAL accessData = new DAL();
+            for (int i=1; i<=10; i++)
+            {
+                question += accessData.SelectAQuestion(i) + System.Environment.NewLine;               
+            }
+            createNewMessage.WriteData(question, "Questions");//write question into file
+
+            //this chunk of code should create a file called Answers that will put all the answers form the MySQL database into a txt file to give to the users *note i am thinking of changing this to create a file for each question that will also contain its corrisponding answers
+            string answers = "";
+            for (int i = 1; i <= 10; i++)
+            {
+                answers = accessData.SelectQAnswers(i);
+            }
+            createNewMessage.WriteData(answers, "Answers");//write question into file
         }
 
         protected override void OnStop()

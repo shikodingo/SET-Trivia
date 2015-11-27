@@ -30,9 +30,9 @@ namespace TriviaService
         // DESCRIPTION  : writes data/message to a text file
         // PARAMETERS   : <string><data><data to be written>
         // RETURNS      : <string><result><was write sucessful or not>
-        public string WriteData(string data)
+        public string WriteData(string data, string fileTitle)
         {
-            string filePath = directory + Guid.NewGuid().ToString() + ".txt";
+            string filePath = directory + fileTitle + ".txt";//string filePath = directory + Guid.NewGuid().ToString() + ".txt";
             string result = "OK";
 
             mut.WaitOne();

@@ -104,24 +104,18 @@ namespace TriviaService
         }
 
         //Select statement for answers
-        public List<string>[] SelectQAnswers(int Qnum)//double check this******************************
+        public string SelectQAnswers(int Qnum)//double check this******************************
         {
             //Create a list to store the result
-            List<string>[] answers = new List<string>[5];
-
-            answers[0] = new List<string>();
-            answers[1] = new List<string>();
-            answers[2] = new List<string>();
-            answers[3] = new List<string>();
-            answers[4] = new List<string>();
-
+            string answers = "";
+            string currentAnswer = "";
             //Open connection
             try
             {
                 this.OpenConnection();
                 if (connection.State == ConnectionState.Open)
                 {
-                    string aQuery = "Select A_Letter ADesription FROM answers Where A_ID=" + Qnum + ";";
+                    string aQuery = "Select * FROM answers Where QuestionID=" + Qnum + ";";//string aQuery = "Select A_Letter ADesription FROM answers Where QuestionID=" + Qnum + ";";
                     MySqlCommand cmd = new MySqlCommand(aQuery, connection);//Create Command
                     
                     //Create a data reader and Execute the command
@@ -130,18 +124,14 @@ namespace TriviaService
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        answers[0].Add(dataReader["A_ID"] + "");
-                        answers[1].Add(dataReader["A_Letter"] + "");
-                        answers[2].Add(dataReader["ADescription"] + "");
-                        answers[3].Add(dataReader["ACorrect"] + "");
-                        answers[4].Add(dataReader["TimeTaken"] + "");
+                        currentAnswer = (string)dataReader["A_Letter"] + ". " + (string)dataReader["ADescription"] + " | " + (string)dataReader["A_ID"] + " | " + (string)dataReader["ACorrect"] + " | " + (string)dataReader["QuestionID"];
+                      
+                        
+                        answers += currentAnswer + System.Environment.NewLine;
                     }
 
                     //close Data Reader
                     dataReader.Close();
-
-                    
-
                 }
             }
             catch
@@ -149,7 +139,7 @@ namespace TriviaService
                 Logging.Log("Exception caught");
             }
             this.CloseConnection();//close Connection
-            return answers;//return list to be displayed
+            return answers;//return answers to be displayed
         }
 
         public void SaveUsersName(String name)
