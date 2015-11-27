@@ -30,7 +30,7 @@ namespace TriviaService
          * the location of the main folder and there for the 3 sub folders will be able to  be changed by the admin with a file in the service folder called directory
          * the service will keep track of user scores by reading in the answers put into the serivce folder and storeing them in the UsersAnswers table
          * when a user is created they will amek a new file in service folder called "newUser" with their user name in the file. the service will store these users in the Users MySQL table
-         * 
+         * once question 10 is sent to the service folder by a user their total score will be calculated and they will be added to the leaderboard
          */
 
         delegate void MyCallback(Object obj);       // Delegate declaration for use in Invoke
