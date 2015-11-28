@@ -21,6 +21,7 @@ namespace TriviaService
          * create a default main folder in the C:\
          * create service, user, admin files within the main folder
          * files meant for users will be sent to user file, files meant for admin will be sent to admin file, and files coming back to service will go in service file
+         * 
          * when a user is sending a file back the users name will be in the file header to identify them
          * when the game starts a file for each question will be sent to the user folder. these files will also include all answers for that question
          * the question files will have the question number in the file title to identify them
@@ -37,7 +38,7 @@ namespace TriviaService
 
         delegate void MyCallback(Object obj);       // Delegate declaration for use in Invoke
         FileSystemWatcher fsw;
-        const string directory = @"C:\Users\Nathan\OneDrive\Windows and Mobile Programming\Assign 6\main\";//change. *this is modifyible when the program is running but needs to be defaulted to a shared file to start
+        string directory = @"C:\Users\Nathan\OneDrive\Windows and Mobile Programming\Assign 6\main\";//change. *this is modifyible when the program is running but needs to be defaulted to a shared file to start
         StreamReader file = null;
         static Mutex mut;
         const string userFolder = @"User\";
@@ -93,6 +94,7 @@ namespace TriviaService
                             // Try to create the main directory.
                             DirectoryInfo main = Directory.CreateDirectory(newPath);
                             Logging.Log("The main directory was created successfully at. " + Directory.GetCreationTime(newPath));
+                            directory = newPath;
 
                             // Try to create the User directory.
                             DirectoryInfo user = Directory.CreateDirectory(newPath + userFolder);
@@ -155,17 +157,18 @@ namespace TriviaService
             return data;
         }
 
-        private void SendMessageToFile(object sender, EventArgs e)//send message
-        {
-            IPCFileProducer createNewMessage = new IPCFileProducer();
-            DAL accessData = new DAL();
-            for (int i = 1; i <= 10; i++)//currently this creates a file for each question with the file having a randomly generated title and the question as text in the file
-            {
-                string question = accessData.SelectAQuestion(i);
-                createNewMessage.WriteData(question, "temp", "temp");//write question into file
-            }
 
-        }
+
+        //private void SendMessageToFile(object sender, EventArgs e)//send message
+        //{
+        //    IPCFileProducer createNewMessage = new IPCFileProducer();
+        //    DAL accessData = new DAL();
+        //    for (int i = 1; i <= 10; i++)//currently this creates a file for each question with the file having a randomly generated title and the question as text in the file
+        //    {
+        //        string question = accessData.SelectAQuestion(i);
+        //        createNewMessage.WriteData(question, "temp", "temp");//write question into file
+        //    }
+        //}
 
         protected override void OnStart(string[] args)
         {
