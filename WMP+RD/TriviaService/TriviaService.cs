@@ -26,7 +26,7 @@ namespace TriviaService
          * the question files will have the question number in the file title to identify them
          * the users will need to parse the data in the file to take out the question and seperate the answers
          * once the user has answered a question they will send a file to the service folder with the question # in the title and the answer in the file
-         * the location of the main folder and there for the 3 sub folders will be able to  be changed by the admin with a file in the service folder called directory
+         * the location of the main folder and there for the 3 sub folders will be able to  be changed by the admin with a file in the service folder called changeDirectory
          * the service will keep track of user scores by reading in the answers put into the serivce folder and storeing them in the UsersAnswers table
          * when a user is created they will make a new file in service folder called "newUser" with their user name in the file. the service will store these users in the Users MySQL table
          * once question 10 is sent to the service folder by a user their total score will be calculated and they will be added to the leaderboard
@@ -54,7 +54,7 @@ namespace TriviaService
                 mut.ReleaseMutex();
             }
 
-            fsw = new FileSystemWatcher(directory);//awesome file system watcher that sends an event when something changes in the file
+            fsw = new FileSystemWatcher(directory + serviceFolder);//awesome file system watcher that sends an event when something changes in the file
             fsw.Filter = "*.txt";
             fsw.NotifyFilter = NotifyFilters.FileName | NotifyFilters.CreationTime;
             fsw.InternalBufferSize = 65535;
@@ -71,18 +71,51 @@ namespace TriviaService
         {
             string status;
             string fileData = ReadFile(e.FullPath, out status);
-            if (status == "OK")
+            string fileTitle = Path.GetFileName(e.FullPath);
+            if (status == "OK")//file was read correctly
             {
-                Thread t1 = new Thread(new ParameterizedThreadStart(SetLblInvoke));//test sending to file
-                t1.Start(fileData);//currently overwriting message need to make it use += not =
                 if (fileData == "Shutdown")
                 {
+                    OnStop();//end service
+                }
+                else if (fileTitle == "changeDirectory")//just the main directory auto generates Service, Admin, User sub folders
+                {
+                    string newPath = fileData;
+                    try
+                    {
+                        // Determine whether the directory exists.
+                        if (Directory.Exists(newPath))
+                        {
+                            Console.WriteLine("That path exists already.");
+                        }
+                        else
+                        {
+                            // Try to create the main directory.
+                            DirectoryInfo main = Directory.CreateDirectory(newPath);
+                            Logging.Log("The main directory was created successfully at. " + Directory.GetCreationTime(newPath));
 
+                            // Try to create the User directory.
+                            DirectoryInfo user = Directory.CreateDirectory(newPath + userFolder);
+                            Logging.Log("The user directory was created successfully at. " + Directory.GetCreationTime(newPath));
+
+                            // Try to create the Admin directory.
+                            DirectoryInfo admin = Directory.CreateDirectory(newPath + adminFolder);
+                            Logging.Log("The admin directory was created successfully at. " + Directory.GetCreationTime(newPath));
+
+                            // Try to create the Service directory.
+                            DirectoryInfo service = Directory.CreateDirectory(newPath + serviceFolder);
+                            Logging.Log("The service directory was created successfully at. " + Directory.GetCreationTime(newPath));
+                        }      
+                    }
+                    catch (Exception ex)
+                    {
+                        Logging.Log("Directory could not be changed");
+                    }
                 }
             }
             else
             {
-                Logging.Log("connection lost");
+                Logging.Log("A file could not be read: " + fileTitle);
             }
         }
 
