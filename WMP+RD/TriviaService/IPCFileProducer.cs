@@ -10,7 +10,7 @@ namespace TriviaService
     class IPCFileProducer
     {
         static Mutex mut;
-        const string directory = @"message\";//send message files to this folder
+        //const string directory = @"C:\Users\Nathan\OneDrive\Windows and Mobile Programming\Assign 6\main\";//send message files to this folder
         StreamWriter file = null;
 
         // FUNCTION     : IPCFileProducer()
@@ -30,7 +30,7 @@ namespace TriviaService
         // DESCRIPTION  : writes data/message to a text file
         // PARAMETERS   : <string><data><data to be written>
         // RETURNS      : <string><result><was write sucessful or not>
-        public string WriteData(string data, string fileTitle)
+        public string WriteData(string data, string fileTitle, string directory)
         {
             string filePath = directory + fileTitle + ".txt";//string filePath = directory + Guid.NewGuid().ToString() + ".txt";
             string result = "OK";

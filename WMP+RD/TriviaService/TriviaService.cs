@@ -19,7 +19,7 @@ namespace TriviaService
     {
         /*
          * create a default main folder in the C:\
-         * create service, user, admin files within the main file
+         * create service, user, admin files within the main folder
          * files meant for users will be sent to user file, files meant for admin will be sent to admin file, and files coming back to service will go in service file
          * when a user is sending a file back the users name will be in the file header to identify them
          * when the game starts a file for each question will be sent to the user folder. these files will also include all answers for that question
@@ -28,7 +28,7 @@ namespace TriviaService
          * once the user has answered a question they will send a file to the service folder with the question # in the title and the answer in the file
          * the location of the main folder and there for the 3 sub folders will be able to  be changed by the admin with a file in the service folder called directory
          * the service will keep track of user scores by reading in the answers put into the serivce folder and storeing them in the UsersAnswers table
-         * when a user is created they will amek a new file in service folder called "newUser" with their user name in the file. the service will store these users in the Users MySQL table
+         * when a user is created they will make a new file in service folder called "newUser" with their user name in the file. the service will store these users in the Users MySQL table
          * once question 10 is sent to the service folder by a user their total score will be calculated and they will be added to the leaderboard
          * if the admin wishes to change a question or answer the admin form will create a file in the service folder called either changeQuestion or changeAnswer with the questions number on the end for the file name. if the admin changes a question then the letter for that question will also be in the file
          * if the admin wants to see current status of users the admin will create a file in the Service folder named viewUserStatus which the server will then respond by creating a file called usersStatus in the admin folder
@@ -37,9 +37,12 @@ namespace TriviaService
 
         delegate void MyCallback(Object obj);       // Delegate declaration for use in Invoke
         FileSystemWatcher fsw;
-        const string directory = @"message\";//puts message into message folder under same directory as the exe   
+        const string directory = @"C:\Users\Nathan\OneDrive\Windows and Mobile Programming\Assign 6\main\";//change. *this is modifyible when the program is running but needs to be defaulted to a shared file to start
         StreamReader file = null;
         static Mutex mut;
+        const string userFolder = @"User\";
+        const string adminFolder = @"Admin\";
+        const string serviceFolder = @"Service\";
 
         public TriviaService()
         {
@@ -126,30 +129,24 @@ namespace TriviaService
             for (int i = 1; i <= 10; i++)//currently this creates a file for each question with the file having a randomly generated title and the question as text in the file
             {
                 string question = accessData.SelectAQuestion(i);
-                createNewMessage.WriteData(question, "temp");//write question into file
+                createNewMessage.WriteData(question, "temp", "temp");//write question into file
             }
 
         }
 
         protected override void OnStart(string[] args)
         {
-            //this chunk of code should create one file called questions that will put all the questions from the MySQL database into a txt file to give to the users
-            string question = "";
+            //this chunk of code should create one file for each question that will contain the question and the corrisponding answers
+            string extension = userFolder;
+            string questionPlusAnswers = "";
             IPCFileProducer createNewMessage = new IPCFileProducer();
             DAL accessData = new DAL();
             for (int i = 1; i <= 10; i++)
             {
-                question += accessData.SelectAQuestion(i) + System.Environment.NewLine;
+                questionPlusAnswers = accessData.SelectAQuestion(i) + System.Environment.NewLine;
+                questionPlusAnswers += accessData.SelectQAnswers(i);
+                createNewMessage.WriteData(questionPlusAnswers, i + "Question", directory + extension);//write question into file
             }
-            createNewMessage.WriteData(question, "Questions");//write question into file
-
-            //this chunk of code should create a file called Answers that will put all the answers form the MySQL database into a txt file to give to the users *note i am thinking of changing this to create a file for each question that will also contain its corrisponding answers
-            string answers = "";
-            for (int i = 1; i <= 10; i++)
-            {
-                answers = accessData.SelectQAnswers(i);
-            }
-            createNewMessage.WriteData(answers, "Answers");//write question into file
         }
 
         protected override void OnStop()
