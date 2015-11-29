@@ -34,6 +34,8 @@ namespace WMP_RD
                 uServer = int.Parse(txtServer.Text);
                 user.Show();
             }
+            Form form2 = new Form();
+            form2.Show();
         }
     }
 }

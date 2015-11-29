@@ -18,9 +18,13 @@ namespace WMP_RD
         StreamReader file = null;
         static Mutex mut;
         FileSystemWatcher fsw;
-        string directory = @"C:\Users\Nathan\OneDrive\Windows and Mobile Programming\Assign 6\main\User\";//change. *this is modifyible when the program is running but needs to be defaulted to a shared file to start
+        string directory = @"C:\Users\Nathan\OneDrive\Windows and Mobile Programming\Assign 6\main\";//change. *this is modifyible when the program is running but needs to be defaulted to a shared file to start
+        const string watchExt = @"User\";
+        const string writeExt = @"Service\";
         string[] questions = new string[10];
         string[,] answers = new string[10, 4];//10q, 4a
+        int currentQuestionCounter = 1;
+        string usersName = "";//need to set some how
 
         public frmMainUserQ()
         {
@@ -31,7 +35,7 @@ namespace WMP_RD
                 mut = new Mutex(true, "MyMutex");
                 mut.ReleaseMutex();
             }
-            fsw = new FileSystemWatcher(directory);//awesome file system watcher that sends an event when something changes in the file
+            fsw = new FileSystemWatcher(directory + watchExt);//awesome file system watcher that sends an event when something changes in the file
             fsw.Filter = "*.txt";
             fsw.NotifyFilter = NotifyFilters.FileName | NotifyFilters.CreationTime;
             fsw.InternalBufferSize = 65535;
@@ -53,7 +57,7 @@ namespace WMP_RD
                 if (fileTitle == "changeDirectory")//just the main directory auto generates Service, Admin, User sub folders
                 {
                     string newPath = fileData;
-                    directory = newPath;
+                    directory = newPath;//newPath should just be the "main" path
                 }                    
                 else if (fileTitle.Contains("Question"))
                 {
@@ -264,6 +268,14 @@ namespace WMP_RD
                     {
                         Logging.Log("Error determining question number");
                     }
+                    if(currentQuestionCounter == 1)
+                    {
+                        txtQuestion.Text = questions[0];
+                        rdba.Text = answers[0, 0];
+                        rdbb.Text = answers[0, 1];
+                        rdbc.Text = answers[0, 2];
+                        rdbd.Text = answers[0, 3];
+                    }
                 }
             }
             else
@@ -312,15 +324,17 @@ namespace WMP_RD
 
         private void frmMainUserQ1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'settriviaDataSet.questions' table. You can move, or remove it, as needed.
-            this.questionsTableAdapter.Fill(this.settriviaDataSet.questions);
-
+            txtQuestion.Text = questions[0];
+            rdba.Text = answers[0, 0];
+            rdbb.Text = answers[0, 1];
+            rdbc.Text = answers[0, 2];
+            rdbd.Text = answers[0, 3];
         }
 
         private void tmr20_Tick(object sender, EventArgs e)
         {
             int timeLeft = 20;
-            while (timeLeft != 0)
+            while (currentQuestionCounter <= 10)//while (timeLeft != 0)
             {
                 if (timeLeft > 0)
                 {
@@ -329,13 +343,54 @@ namespace WMP_RD
                     timeLeft = timeLeft - 1;
                     lblTime.Text = timeLeft + " seconds";
                 }
+                else if(currentQuestionCounter > 9)
+                {
+                    tmr20.Stop();
+                    //end game
+                }
                 else
                 {
-                    // If the user ran out of time, stop the timer
-                    tmr20.Stop();
+                    // If the user ran out of time, stop the time
+                    //tmr20.Stop();
+                    timeLeft = 20;
+
+                    txtQuestion.Text = questions[currentQuestionCounter];
+                    rdba.Text = answers[currentQuestionCounter, 0];
+                    rdbb.Text = answers[currentQuestionCounter, 1];
+                    rdbc.Text = answers[currentQuestionCounter, 2];
+                    rdbd.Text = answers[currentQuestionCounter, 3];
+
+                    currentQuestionCounter++;
                     lblTime.Text = "Time's up!";
                 }
             }
+        }
+
+        private void rdba_CheckedChanged(object sender, EventArgs e)
+        {
+            string extension = writeExt;
+            string usersAnswer = "";
+            IPCFileProducer createNewMessage = new IPCFileProducer();
+            for (int i = 1; i <= 10; i++)
+            {
+                usersAnswer = currentQuestionCounter + rdba.Text;
+                createNewMessage.WriteData(usersAnswer, userName, directory + extension);//write question into file
+            }
+        }
+
+        private void rdbb_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdbc_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdbd_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
