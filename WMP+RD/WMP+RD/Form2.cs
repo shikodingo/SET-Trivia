@@ -25,6 +25,7 @@ namespace WMP_RD
         string[,] answers = new string[10, 4];//10q, 4a
         int currentQuestionCounter = 1;
         string usersName = "";//need to set some how
+        int timeLeft = 20;
 
         public frmMainUserQ()
         {
@@ -333,7 +334,7 @@ namespace WMP_RD
 
         private void tmr20_Tick(object sender, EventArgs e)
         {
-            int timeLeft = 20;
+            
             while (currentQuestionCounter <= 10)//while (timeLeft != 0)
             {
                 if (timeLeft > 0)
@@ -371,26 +372,43 @@ namespace WMP_RD
             string extension = writeExt;
             string usersAnswer = "";
             IPCFileProducer createNewMessage = new IPCFileProducer();
-            for (int i = 1; i <= 10; i++)
-            {
-                usersAnswer = currentQuestionCounter + rdba.Text;
-                createNewMessage.WriteData(usersAnswer, userName, directory + extension);//write question into file
-            }
+            usersAnswer = currentQuestionCounter + rdba.Text;
+            createNewMessage.WriteData(usersAnswer, userName, directory + extension);//write question into file
+            timeLeft = 20;
+            currentQuestionCounter++;
         }
 
         private void rdbb_CheckedChanged(object sender, EventArgs e)
         {
-
+            string extension = writeExt;
+            string usersAnswer = "";
+            IPCFileProducer createNewMessage = new IPCFileProducer();
+            usersAnswer = currentQuestionCounter + rdbb.Text;
+            createNewMessage.WriteData(usersAnswer, userName, directory + extension);//write question into file
+            timeLeft = 20;
+            currentQuestionCounter++;
         }
 
         private void rdbc_CheckedChanged(object sender, EventArgs e)
         {
-
+            string extension = writeExt;
+            string usersAnswer = "";
+            IPCFileProducer createNewMessage = new IPCFileProducer();
+            usersAnswer = currentQuestionCounter + rdbc.Text;
+            createNewMessage.WriteData(usersAnswer, userName, directory + extension);//write question into file
+            timeLeft = 20;
+            currentQuestionCounter++;
         }
 
         private void rdbd_CheckedChanged(object sender, EventArgs e)
         {
-
+            string extension = writeExt;
+            string usersAnswer = "";
+            IPCFileProducer createNewMessage = new IPCFileProducer();
+            usersAnswer = currentQuestionCounter + rdbd.Text;
+            createNewMessage.WriteData(usersAnswer, userName, directory + extension);//write question into file
+            timeLeft = 20;
+            currentQuestionCounter++;
         }
     }
 }
