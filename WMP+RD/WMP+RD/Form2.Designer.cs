@@ -34,14 +34,16 @@
             this.settriviaDataSet = new WMP_RD.settriviaDataSet();
             this.questionsTableAdapter = new WMP_RD.settriviaDataSetTableAdapters.questionsTableAdapter();
             this.tmr20 = new System.Windows.Forms.Timer(this.components);
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.rdbd = new System.Windows.Forms.RadioButton();
+            this.rdbc = new System.Windows.Forms.RadioButton();
+            this.rdbb = new System.Windows.Forms.RadioButton();
+            this.rdba = new System.Windows.Forms.RadioButton();
             this.lblTime = new System.Windows.Forms.Label();
             this.txtQuestion = new System.Windows.Forms.TextBox();
+            this.grbox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.questionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settriviaDataSet)).BeginInit();
+            this.grbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblQuestion1
@@ -72,49 +74,45 @@
             this.tmr20.Enabled = true;
             this.tmr20.Tick += new System.EventHandler(this.tmr20_Tick);
             // 
-            // radioButton1
+            // rdbd
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(52, 127);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdbd.AutoSize = true;
+            this.rdbd.Location = new System.Drawing.Point(0, 99);
+            this.rdbd.Name = "rdbd";
+            this.rdbd.Size = new System.Drawing.Size(14, 13);
+            this.rdbd.TabIndex = 2;
+            this.rdbd.TabStop = true;
+            this.rdbd.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdbc
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(52, 151);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 3;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdbc.AutoSize = true;
+            this.rdbc.Location = new System.Drawing.Point(0, 75);
+            this.rdbc.Name = "rdbc";
+            this.rdbc.Size = new System.Drawing.Size(14, 13);
+            this.rdbc.TabIndex = 3;
+            this.rdbc.TabStop = true;
+            this.rdbc.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rdbb
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(52, 175);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
-            this.radioButton3.TabIndex = 4;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rdbb.AutoSize = true;
+            this.rdbb.Location = new System.Drawing.Point(0, 42);
+            this.rdbb.Name = "rdbb";
+            this.rdbb.Size = new System.Drawing.Size(14, 13);
+            this.rdbb.TabIndex = 4;
+            this.rdbb.TabStop = true;
+            this.rdbb.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // rdba
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(52, 199);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 17);
-            this.radioButton4.TabIndex = 5;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton4";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rdba.AutoSize = true;
+            this.rdba.Location = new System.Drawing.Point(0, 19);
+            this.rdba.Name = "rdba";
+            this.rdba.Size = new System.Drawing.Size(14, 13);
+            this.rdba.TabIndex = 5;
+            this.rdba.TabStop = true;
+            this.rdba.UseVisualStyleBackColor = true;
             // 
             // lblTime
             // 
@@ -134,23 +132,34 @@
             this.txtQuestion.Size = new System.Drawing.Size(220, 78);
             this.txtQuestion.TabIndex = 7;
             // 
+            // grbox
+            // 
+            this.grbox.Controls.Add(this.rdba);
+            this.grbox.Controls.Add(this.rdbb);
+            this.grbox.Controls.Add(this.rdbc);
+            this.grbox.Controls.Add(this.rdbd);
+            this.grbox.Location = new System.Drawing.Point(29, 127);
+            this.grbox.Name = "grbox";
+            this.grbox.Size = new System.Drawing.Size(142, 128);
+            this.grbox.TabIndex = 8;
+            this.grbox.TabStop = false;
+            // 
             // frmMainUserQ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.grbox);
             this.Controls.Add(this.txtQuestion);
             this.Controls.Add(this.lblTime);
-            this.Controls.Add(this.radioButton4);
-            this.Controls.Add(this.radioButton3);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.lblQuestion1);
             this.Name = "frmMainUserQ";
             this.Text = "Question ";
             this.Load += new System.EventHandler(this.frmMainUserQ1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.questionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.settriviaDataSet)).EndInit();
+            this.grbox.ResumeLayout(false);
+            this.grbox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,11 +172,12 @@
         private System.Windows.Forms.BindingSource questionsBindingSource;
         private settriviaDataSetTableAdapters.questionsTableAdapter questionsTableAdapter;
         private System.Windows.Forms.Timer tmr20;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton rdbd;
+        private System.Windows.Forms.RadioButton rdbc;
+        private System.Windows.Forms.RadioButton rdbb;
+        private System.Windows.Forms.RadioButton rdba;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.TextBox txtQuestion;
+        private System.Windows.Forms.GroupBox grbox;
     }
 }
