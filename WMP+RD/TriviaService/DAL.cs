@@ -124,10 +124,10 @@ namespace TriviaService
                     //Read the data and store them in the list
                     while (dataReader.Read())
                     {
-                        currentAnswer = (string)dataReader["A_Letter"] + ". " + (string)dataReader["ADescription"] + " | " + (string)dataReader["A_ID"] + " | " + (string)dataReader["ACorrect"] + " | " + (string)dataReader["QuestionID"];
+                        currentAnswer = (string)dataReader["A_Letter"] + "|" + (string)dataReader["ADescription"] + "|" + (string)dataReader["A_ID"] + "|" + (string)dataReader["ACorrect"] + "|" + (string)dataReader["QuestionID"];
                       
                         
-                        answers += currentAnswer + System.Environment.NewLine;
+                        answers += currentAnswer;
                     }
 
                     //close Data Reader

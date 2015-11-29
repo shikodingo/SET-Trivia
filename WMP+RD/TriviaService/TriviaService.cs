@@ -36,7 +36,7 @@ namespace TriviaService
          * 
          */
 
-        delegate void MyCallback(Object obj);       // Delegate declaration for use in Invoke
+        //delegate void MyCallback(Object obj);       // Delegate declaration for use in Invoke
         FileSystemWatcher fsw;
         string directory = @"C:\Users\Nathan\OneDrive\Windows and Mobile Programming\Assign 6\main\";//change. *this is modifyible when the program is running but needs to be defaulted to a shared file to start
         StreamReader file = null;
@@ -179,7 +179,7 @@ namespace TriviaService
             DAL accessData = new DAL();
             for (int i = 1; i <= 10; i++)
             {
-                questionPlusAnswers = accessData.SelectAQuestion(i) + System.Environment.NewLine;
+                questionPlusAnswers = accessData.SelectAQuestion(i) + "|";
                 questionPlusAnswers += accessData.SelectQAnswers(i);
                 createNewMessage.WriteData(questionPlusAnswers, i + "Question", directory + extension);//write question into file
             }
